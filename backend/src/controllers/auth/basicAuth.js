@@ -34,7 +34,7 @@ const jwtSecretKey = `${process.env.JWT_SECRET_KEY}`
  * HTTP/1.1 200 OK
  * {
  *    "user": UserData,
- *    "token": JWTToken,
+ *    "token": JWTToken
  * }
  *
  * @apiError {Object} error Error object if the login process fails.

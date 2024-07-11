@@ -78,7 +78,7 @@ const getAllCandidates = async (req, res, next) => {
  *    "linkedin_url": "http://linkedin-profile.com",
  *    "github_url": "http://github-profile.com",
  *    "availability_start_time": "09:00",
- *    "availability_end_time": "17:00",
+ *    "availability_end_time": "17:00"
  * }
  *
  * @apiSuccess {String} message Successfully Updated message.
@@ -159,6 +159,8 @@ const createCandidateProfile = async (req, res, next) => {
  *
  * @apiHeader {String} authorization Admin's unique access-key.
  *
+ * @apiParam {Number} id Candidate's unique ID.
+ *
  * @apiBody {String} first_name The first name of the user.
  * @apiBody {String} last_name The last name of the user.
  * @apiBody {String} email The email of the user.
@@ -179,7 +181,7 @@ const createCandidateProfile = async (req, res, next) => {
  *    "linkedin_url": "http://linkedin-profile.com",
  *    "github_url": "http://github-profile.com",
  *    "availability_start_time": "09:00",
- *    "availability_end_time": "17:00",
+ *    "availability_end_time": "17:00"
  * }
  *
  * @apiSuccess {String} message Success Message
