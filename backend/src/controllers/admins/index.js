@@ -31,19 +31,21 @@ const { REGEX } = require("../../enums")
  *    "message": error
  * }
  */
-const getAllCandidates=async(req,res,next)=>{
-  const admin=req.user
-  try{
-    const allCandidates=await CandidateQueries.getAll({
-      where:{
-        added_by:admin?.id
-      }
+const getAllCandidates = async (req, res, next) => {
+  const admin = req.user
+  try {
+    const allCandidates = await CandidateQueries.getAll({
+      where: {
+        added_by: admin?.id,
+      },
     })
 
-    const finalPayload=allCandidates?.map(candidateProfile=> candidateDataMapper(candidateProfile))
+    const finalPayload = allCandidates?.map((candidateProfile) =>
+      candidateDataMapper(candidateProfile)
+    )
 
     res.status(200).json(finalPayload)
-  }catch(err){
+  } catch (err) {
     next(err)
   }
 }
@@ -55,7 +57,7 @@ const getAllCandidates=async(req,res,next)=>{
  * @apiDescription Create or update Candidate Profile
  *
  * @apiHeader {String} authorization Admin's unique access-key.
- * 
+ *
  * @apiBody {String} first_name The first name of the user.
  * @apiBody {String} last_name The last name of the user.
  * @apiBody {String} email The email of the user.
@@ -156,7 +158,7 @@ const createCandidateProfile = async (req, res, next) => {
  * @apiDescription Common API to Update Candidate's profile
  *
  * @apiHeader {String} authorization Admin's unique access-key.
- * 
+ *
  * @apiBody {String} first_name The first name of the user.
  * @apiBody {String} last_name The last name of the user.
  * @apiBody {String} email The email of the user.
