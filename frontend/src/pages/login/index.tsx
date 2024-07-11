@@ -1,54 +1,50 @@
-import React, { useContext, useEffect } from "react";
-import { Layout, Row, Col, Form, Input, Button, message } from "antd";
-import { Content, Header } from "antd/lib/layout/layout";
-import {
-  EyeOutlined,
-  EyeInvisibleOutlined,
-} from "@ant-design/icons";
+import React, { useContext, useEffect } from "react"
+import { Layout, Row, Col, Form, Input, Button, message } from "antd"
+import { Content, Header } from "antd/lib/layout/layout"
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons"
 
-import { useMutation } from "react-query";
-import Router from "next/router";
-import { AuthContext, parseJwt } from "@/utils";
-import { loginUser } from "@/services/auth";
-import { ILoginForm } from "@/types";
+import { useMutation } from "react-query"
+import Router from "next/router"
+import { AuthContext, parseJwt } from "@/utils"
+import { loginUser } from "@/services/auth"
+import { ILoginForm } from "@/types"
 
 const LoginAdminPage = () => {
-  const { setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext)
 
   const { mutate, isLoading } = useMutation(loginUser, {
     onSuccess: ({ data }: any) => {
-      localStorage.setItem("candidate-portal-token", data?.token);
+      localStorage.setItem("candidate-portal-token", data?.token)
 
       // Set Auth Context USer
-      setUser(parseJwt());
+      setUser(parseJwt())
 
-      Router.push("/admin/candidates");
+      Router.push("/admin/candidates")
     },
     onError: (err: any) => {
       message.open({
         type: "error",
         content: err?.response?.data?.message || "Error while logging in Admin",
-      });
+      })
     },
-  });
+  })
 
   const onSubmit = (values: ILoginForm) => {
-    mutate(values);
-  };
+    mutate(values)
+  }
 
   //Redirect to Landing if already Logged In
   useEffect(() => {
-    const user = parseJwt();
+    const user = parseJwt()
     if (user) {
-      Router.push("/admin/candidates");
+      Router.push("/admin/candidates")
     }
-  }, []);
+  }, [])
 
   return (
     <>
       <Layout>
-        <Header style={{ background: "#fff" }}>
-        </Header>
+        <Header style={{ background: "#fff" }}></Header>
         <Content>
           <Row
             justify="center"
@@ -78,9 +74,7 @@ const LoginAdminPage = () => {
                   <Form.Item
                     label="Password"
                     name="password"
-                    rules={[
-                      { required: true, message: "Please Enter Password!" },
-                    ]}
+                    rules={[{ required: true, message: "Please Enter Password!" }]}
                   >
                     <Input.Password
                       iconRender={(visible) =>
@@ -112,6 +106,6 @@ const LoginAdminPage = () => {
         </Content>
       </Layout>
     </>
-  );
-};
-export default LoginAdminPage;
+  )
+}
+export default LoginAdminPage

@@ -1,53 +1,48 @@
-import { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { AuthProvider, parseJwt } from "../utils";
-import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
-import { message } from "antd";
-import { Roles } from "@/constants";
+import { AppProps } from "next/app"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { AuthProvider, parseJwt } from "../utils"
+import Head from "next/head"
+import { useCallback, useEffect, useState } from "react"
+import { message } from "antd"
+import { Roles } from "@/constants"
 
-const queryClient = new QueryClient({ defaultOptions: {} });
+const queryClient = new QueryClient({ defaultOptions: {} })
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(parseJwt());
+  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(parseJwt())
 
   const initialLoad = useCallback(() => {
     try {
-      const parsedUser = parseJwt();
+      const parsedUser = parseJwt()
 
-      setUser(parsedUser);
+      setUser(parsedUser)
 
-      return;
+      return
     } catch (error) {
-      setUser(null);
-      message.error("Unauthorized Admin");
-      window.location.href = "/login";
+      setUser(null)
+      message.error("Unauthorized Admin")
+      window.location.href = "/login"
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    initialLoad();
-  }, []);
+    initialLoad()
+  }, [])
   return (
     <>
       <Head>
         <title>{"Candidates Portal"}</title>
       </Head>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider
-          loading={loading}
-          user={user}
-          setUser={setUser}
-          role={user?.role as Roles}
-        >
+        <AuthProvider loading={loading} user={user} setUser={setUser} role={user?.role as Roles}>
           <Component {...pageProps} />
         </AuthProvider>
       </QueryClientProvider>
     </>
-  );
-};
+  )
+}
 
-export default MyApp;
+export default MyApp
