@@ -18,9 +18,9 @@ class CandidatesQueries {
   // Get Candidate using id or any fitler
   async getOne(id, transaction = null) {
     const query = {
-      where:{
-        id
-      }
+      where: {
+        id,
+      },
     }
 
     if (transaction) query.transaction = transaction

@@ -50,7 +50,6 @@ module.exports = {
       ],
       {}
     )
-
   },
 
   async down(queryInterface, Sequelize) {

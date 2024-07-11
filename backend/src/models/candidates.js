@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here such as belongsto, has, hasMany and so on
       Candidates.belongsTo(models.Users, { targetKey: "id", foreignKey: "user_id" })
-    
     }
   }
   Candidates.init(

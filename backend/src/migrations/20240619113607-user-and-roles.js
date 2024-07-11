@@ -68,11 +68,11 @@ module.exports = {
             type: Sequelize.DataTypes.STRING(255),
             allowNull: true,
           },
-                    jwt_token: {
+          jwt_token: {
             type: Sequelize.DataTypes.TEXT,
             allowNull: true,
           },
-          
+
           created_at: {
             type: Sequelize.DataTypes.DATE,
             defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

@@ -5,7 +5,7 @@ exports.userDataMapper = (userData) => {
     last_name: userData?.last_name,
     email: userData?.email,
     roles: userData?.roles,
-    created_at:userData?.created_at
+    created_at: userData?.created_at,
   }
 }
 

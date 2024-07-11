@@ -9,17 +9,17 @@ const HTTP_STATUS_CODES = Object.freeze({
 
 const USER_ROLES = Object.freeze({
   ADMIN: "admin",
-  USER: "user"
+  USER: "user",
 })
 
-const REGEX=Object.freeze({
-  LINKED_URL:/^https:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/,
-  GITHUB_URL:/^https:\/\/github\.com\/[a-zA-Z0-9-]+$/,
-  TIME_PATTERN:/^(?:[01]\d|2[0-3]):[0-5]\d$/,
+const REGEX = Object.freeze({
+  LINKED_URL: /^https:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/,
+  GITHUB_URL: /^https:\/\/github\.com\/[a-zA-Z0-9-]+$/,
+  TIME_PATTERN: /^(?:[01]\d|2[0-3]):[0-5]\d$/,
 })
 
 module.exports = {
   USER_ROLES,
   HTTP_STATUS_CODES,
-  REGEX
+  REGEX,
 }

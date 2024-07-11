@@ -105,8 +105,6 @@ const loginUser = async (req, res, next) => {
   }
 }
 
-
-
 /**
  * @api {post} /api/auth/logout Logout User
  * @apiName logout

@@ -1,4 +1,4 @@
-const { Users,  Roles } = require("../models")
+const { Users, Roles } = require("../models")
 
 /*
  Create a class named UserQueries which will be used to

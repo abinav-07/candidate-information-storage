@@ -1,0 +1,16 @@
+{
+  "name": "candidate-information-storage",
+  "version": "1.0.0",
+  "description": "Monorepo setup",
+  "workspaces": [
+    "server/*",
+    "web/*"
+  ],
+  "scripts": {
+    "format:fix": "prettier --write './**/*.{js,ts}{x,}'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Abinav Ghimire",
+  "license": "ISC"
+}
