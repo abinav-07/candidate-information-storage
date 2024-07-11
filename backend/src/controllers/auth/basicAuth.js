@@ -111,6 +111,8 @@ const loginUser = async (req, res, next) => {
  * @apiGroup Authentication
  * @apiDescription Logout loggedin users
  *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ * 
  * @apiSuccess {String} message Logged out successfully
  *
  * @apiSuccessExample {json} Success Response:

@@ -6,6 +6,11 @@ const AdminControllers = require("../controllers/admins")
 const { checkVerifiedJWTToken, checkAdmin } = require("../middlewares/checkJWT")
 
 // Authentication routes
+router.get(
+    "/candidate",
+    [checkVerifiedJWTToken, checkAdmin],
+    AdminControllers.getAllCandidates
+  )
 router.post(
   "/candidate",
   [checkVerifiedJWTToken, checkAdmin],

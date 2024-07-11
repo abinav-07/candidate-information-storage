@@ -8,11 +8,54 @@ const { candidateDataMapper } = require("../../helpers/mappers/candidateMapper")
 const { REGEX } = require("../../enums")
 
 /**
+ * @api {get} /api/admin/candidate Get all Candidates
+ * @apiName GetCandidates
+ * @apiGroup Admin
+ * @apiDescription Get Candidates created by the currently logged in Admin
+ *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ *
+ * @apiSuccess {json} CanidatesPayload Candidates Payload in a array.
+ *
+ * @apiSuccessExample {json} Success Response:
+ * HTTP/1.1 200 OK
+ * {
+ *    ...CandidatesPayload
+ * }
+ *
+ * @apiError {Object} error Error object.
+ *
+ * @apiErrorExample {json} Error Response:
+ * HTTP/1.1 500 Internal Server Error
+ * {
+ *    "message": error
+ * }
+ */
+const getAllCandidates=async(req,res,next)=>{
+  const admin=req.user
+  try{
+    const allCandidates=await CandidateQueries.getAll({
+      where:{
+        added_by:admin?.id
+      }
+    })
+
+    const finalPayload=allCandidates?.map(candidateProfile=> candidateDataMapper(candidateProfile))
+
+    res.status(200).json(finalPayload)
+  }catch(err){
+    next(err)
+  }
+}
+
+/**
  * @api {post} /api/admin/candidate/create Create Candidate Profile
  * @apiName CreateCandidateProfile
  * @apiGroup Admin
  * @apiDescription Create or update Candidate Profile
  *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ * 
  * @apiBody {String} first_name The first name of the user.
  * @apiBody {String} last_name The last name of the user.
  * @apiBody {String} email The email of the user.
@@ -112,6 +155,8 @@ const createCandidateProfile = async (req, res, next) => {
  * @apiGroup Admin
  * @apiDescription Common API to Update Candidate's profile
  *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ * 
  * @apiBody {String} first_name The first name of the user.
  * @apiBody {String} last_name The last name of the user.
  * @apiBody {String} email The email of the user.
@@ -220,6 +265,7 @@ const updateCandidateProfile = async (req, res, next) => {
 }
 
 module.exports = {
+  getAllCandidates,
   createCandidateProfile,
   updateCandidateProfile,
 }
