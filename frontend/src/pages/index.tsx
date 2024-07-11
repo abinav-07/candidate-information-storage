@@ -1,5 +1,4 @@
-import Head from "next/head";
-
+import Head from "next/head"
 
 function Home() {
   return (
@@ -9,7 +8,7 @@ function Home() {
       </Head>
       <div> This is test page</div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
