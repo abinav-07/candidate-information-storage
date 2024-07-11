@@ -177,8 +177,8 @@ const updateCandidateProfile = async (req, res, next) => {
   const validationResult = schema.validate(data, { abortEarly: false })
 
   try {
-      // Transaction
-      t = await sequelize.transaction()
+    // Transaction
+    t = await sequelize.transaction()
 
     const candidateId = req.params?.id
 
@@ -186,7 +186,6 @@ const updateCandidateProfile = async (req, res, next) => {
       throw new ValidationException(null, "Candidate Id is required in params.")
     }
 
-  
     if (validationResult && validationResult.error)
       throw new ValidationException(null, validationResult.error)
 

@@ -6,7 +6,15 @@ const AdminControllers = require("../controllers/admins")
 const { checkVerifiedJWTToken, checkAdmin } = require("../middlewares/checkJWT")
 
 // Authentication routes
-router.post("/candidate",[checkVerifiedJWTToken,checkAdmin], AdminControllers.createCandidateProfile)
-router.patch("/candidate/:id", [checkVerifiedJWTToken,checkAdmin], AdminControllers.updateCandidateProfile)
+router.post(
+  "/candidate",
+  [checkVerifiedJWTToken, checkAdmin],
+  AdminControllers.createCandidateProfile
+)
+router.patch(
+  "/candidate/:id",
+  [checkVerifiedJWTToken, checkAdmin],
+  AdminControllers.updateCandidateProfile
+)
 
 module.exports = router

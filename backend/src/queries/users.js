@@ -26,9 +26,9 @@ class UserQueries {
           // I dont want the many to many table data
           through: {
             attributes: [],
-            where:{
-              deleted_at:null
-            }
+            where: {
+              deleted_at: null,
+            },
           },
         },
       ],
