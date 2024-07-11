@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Candidates from "./admin/candidates"
 
 function Home() {
   return (
@@ -6,7 +7,7 @@ function Home() {
       <Head>
         <title> {"Top Page"}</title>
       </Head>
-      <div> This is test page</div>
+      <Candidates />
     </>
   )
 }
