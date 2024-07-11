@@ -63,10 +63,10 @@ Below are the details of the main entities and their relationships within the da
 - **last_name**: Candidates's last name.
 - **email**: Candidates's email address.
 - **free_text**: Candidates's description.
-- **phone_number**: Candidates's phone number
-- **linkedin_url**: Candidates's linkedin URL.
-- **github_url**: Candidates's github URL.
-- **availability_start_time**: Candidates's availability start time.
-- **availability_end_time**: Candidates's availability end time.
+- **phone_number** (Nullable): Candidates's phone number
+- **linkedin_url** (Nullable): Candidates's linkedin URL.
+- **github_url** (Nullable): Candidates's github URL.
+- **availability_start_time** (Nullable): Candidates's availability start time.
+- **availability_end_time** (Nullable): Candidates's availability end time.
 
 # Happy Codding!
