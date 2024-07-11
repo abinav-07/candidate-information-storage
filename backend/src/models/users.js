@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Users.hasMany(models.Candidates, {
-        foreignKey: "user_id",
+        foreignKey: "added_by",
         as: "added_candidates",
       })
     }

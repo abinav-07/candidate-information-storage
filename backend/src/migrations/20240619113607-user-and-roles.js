@@ -164,7 +164,7 @@ module.exports = {
             allowNull: false,
           },
           phone_number: {
-            type: Sequelize.DataTypes.INTEGER,
+            type: Sequelize.DataTypes.STRING(255),
             allowNull: true,
           },
           linkedin_url: {

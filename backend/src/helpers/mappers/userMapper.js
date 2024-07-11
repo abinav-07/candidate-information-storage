@@ -1,6 +1,6 @@
 exports.userDataMapper = (userData) => {
   return {
-    user_id: userData?.id,
+    id: userData?.id,
     first_name: userData?.first_name,
     last_name: userData?.last_name,
     email: userData?.email,
@@ -11,7 +11,7 @@ exports.userDataMapper = (userData) => {
 
 exports.userJWTDataMapper = (userData) => {
   return {
-    user_id: userData?.id,
+    id: userData?.id,
     first_name: userData?.first_name,
     last_name: userData?.last_name,
     email: userData?.email,

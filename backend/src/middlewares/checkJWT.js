@@ -21,7 +21,7 @@ const checkVerifiedJWTToken = async (req, res, next) => {
     // Decode the token from the header with the token that we signed in during login/register
     const decodedToken = jwt.verify(jwtToken, jwtSecretKey)
 
-    const checkUser = await UserQueries.getUser({ id: decodedToken?.user_id, jwt_token: jwtToken })
+    const checkUser = await UserQueries.getUser({ id: decodedToken?.id, jwt_token: jwtToken })
 
     const verifiedPayloads = userDataMapper(checkUser)
 
@@ -45,7 +45,7 @@ const checkVerifiedJWTToken = async (req, res, next) => {
 const checkAdmin = (req, res, next) => {
   try {
     const { user } = req
-    const isAdmin = user.roles?.some((userRole) => userRole?.name === USER_ROLES.ADMIN)
+    const isAdmin = user?.roles?.some((userRole) => userRole?.name === USER_ROLES.ADMIN)
     if (!isAdmin) {
       throw new UnauthorizedException(null, "Unauthorized Admin")
     }

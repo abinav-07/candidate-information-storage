@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here such as belongsto, has, hasMany and so on
-      Candidates.belongsTo(models.Users, { targetKey: "id", foreignKey: "user_id" })
+      Candidates.belongsTo(models.Users, { targetKey: "id", foreignKey: "added_by" })
     }
   }
   Candidates.init(
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       phone_number: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(255),
         allowNull: true,
       },
       linkedin_url: {

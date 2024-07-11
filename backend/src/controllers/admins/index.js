@@ -107,7 +107,7 @@ const createCandidateProfile = async (req, res, next) => {
 }
 
 /**
- * @api {patch} /api/admin/candidate/:id/update Update Candidate Profile
+ * @api {patch} /api/admin/candidate/:id Update Candidate Profile
  * @apiName UpdateCandidateProfile
  * @apiGroup Admin
  * @apiDescription Common API to Update Candidate's profile
@@ -163,7 +163,7 @@ const updateCandidateProfile = async (req, res, next) => {
     email: Joi.string().required().email(),
     free_text: Joi.string().required(),
     // Not required values
-    phone_number: Joi.number(),
+    phone_number: Joi.string(),
     linkedin_url: Joi.string().pattern(REGEX.LINKED_URL).message("Invalid Linkendin URL."),
     github_url: Joi.string().pattern(REGEX.GITHUB_URL).message("Invalid Github URL."),
     availability_start_time: Joi.string()
@@ -177,15 +177,16 @@ const updateCandidateProfile = async (req, res, next) => {
   const validationResult = schema.validate(data, { abortEarly: false })
 
   try {
-    const candidateId = req.param?.id
+      // Transaction
+      t = await sequelize.transaction()
+
+    const candidateId = req.params?.id
 
     if (!candidateId) {
       throw new ValidationException(null, "Candidate Id is required in params.")
     }
 
-    // Transaction
-    t = await sequelize.transaction()
-
+  
     if (validationResult && validationResult.error)
       throw new ValidationException(null, validationResult.error)
 
