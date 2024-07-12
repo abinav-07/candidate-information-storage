@@ -51,6 +51,51 @@ const getAllCandidates = async (req, res, next) => {
 }
 
 /**
+ * @api {get} /api/admin/candidate/:id Get One Candidate
+ * @apiName GetCandidate
+ * @apiGroup Admin
+ * @apiDescription Get Candidate by id
+ *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ * 
+ * @apiParam {number} id Candidate's id.
+ *
+ * @apiSuccess {json} CanidatesPayload Candidates Payload.
+ *
+ * @apiSuccessExample {json} Success Response:
+ * HTTP/1.1 200 OK
+ * {
+ *    ...CandidatesPayload
+ * }
+ *
+ * @apiError {Object} error Error object.
+ *
+ * @apiErrorExample {json} Error Response:
+ * HTTP/1.1 500 Internal Server Error
+ * {
+ *    "message": error
+ * }
+ */
+const getCandidate = async (req, res, next) => {
+  const admin = req.user
+  try {
+    const {id}=req.params
+    if(!id){
+      throw new ValidationException(null,"Candidate Id is required")
+    }
+
+    const candidateData = await CandidateQueries.getOne(id)
+
+    const finalPayload = candidateDataMapper(candidateData)
+    
+
+    res.status(200).json(finalPayload)
+  } catch (err) {
+    next(err)
+  }
+}
+
+/**
  * @api {post} /api/admin/candidate/create Create Candidate Profile
  * @apiName CreateCandidateProfile
  * @apiGroup Admin
@@ -326,6 +371,7 @@ const deleteCandidateProfile = async (req, res, next) => {
 
 module.exports = {
   getAllCandidates,
+  getCandidate,
   createCandidateProfile,
   updateCandidateProfile,
   deleteCandidateProfile,
