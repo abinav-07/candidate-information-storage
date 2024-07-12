@@ -12,8 +12,10 @@ This section covers the process for configuring and installing the application p
 2. Add `.env` to your `root` directory, It has env.example file, you can copy same values to .env.
 3. In root directory, run `docker compose up --build` to run the application for the first time, after that you can simply use `docker compose up` if no new npm packages are installed, node.js port is taken from env, takes some time to build :). `Make sure you have space left in your device for the application to install`
 4. You can now access the server in 5000 port for nodejs and 5001 for admin database.
+5. You can now access the app in this URL `http://localhost:3000`
 
-## For backend Documentation
+
+## For API Documentation
 
 Open `http://localhost:5000/api/documentation` for APIs documentation.
 
@@ -22,7 +24,6 @@ Open `http://localhost:5000/api/documentation` for APIs documentation.
 `Admin Cred: admin@gmail.com admin`
 
 # Database Documentation
-
 
 Open `http://localhost:5001` for adminer setup. Use the host and username and password from .env file. 
 
