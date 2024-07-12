@@ -40,5 +40,19 @@ services:
       - ${NODE_PORT}:${NODE_PORT}
     container_name: node-app
 
+  next-build:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/src:/next/app/src
+    container_name: frontend-app
+    env_file: .env
+    depends_on:
+      - backend
+
 volumes:
   mysql-data: # Define a named volume for persistent MySQL data

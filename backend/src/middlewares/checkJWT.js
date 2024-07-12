@@ -12,7 +12,7 @@ const jwtSecretKey = `${process.env.JWT_SECRET_KEY}`
 const checkVerifiedJWTToken = async (req, res, next) => {
   try {
     // Get token from headers or cookies
-    let jwtToken = req.cookies.token || req.headers.authorization
+    let jwtToken = req.cookies["candidate-portal-token"] || req.headers.authorization
 
     if (jwtToken.startsWith("Bearer")) {
       jwtToken = jwtToken.split(" ")[1] //Bearer xa2132

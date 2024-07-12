@@ -92,7 +92,7 @@ const loginUser = async (req, res, next) => {
     await t.commit()
 
     // Set HTTP-only cookies for tokens
-    res.cookie("token", token, cookieConfig[env])
+    res.cookie("candidate-portal-token", token, cookieConfig[env])
 
     res.status(200).json({
       user: responsePayload,
@@ -138,7 +138,7 @@ const logout = async (req, res, next) => {
     })
 
     // Remove Token
-    res.cookie("token", "")
+    res.cookie("candidate-portal-token", "")
 
     res.status(200).json({
       message: "Logged out successfully",
