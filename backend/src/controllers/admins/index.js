@@ -57,7 +57,7 @@ const getAllCandidates = async (req, res, next) => {
  * @apiDescription Get Candidate by id
  *
  * @apiHeader {String} authorization Admin's unique access-key.
- * 
+ *
  * @apiParam {number} id Candidate's id.
  *
  * @apiSuccess {json} CanidatesPayload Candidates Payload.
@@ -79,15 +79,14 @@ const getAllCandidates = async (req, res, next) => {
 const getCandidate = async (req, res, next) => {
   const admin = req.user
   try {
-    const {id}=req.params
-    if(!id){
-      throw new ValidationException(null,"Candidate Id is required")
+    const { id } = req.params
+    if (!id) {
+      throw new ValidationException(null, "Candidate Id is required")
     }
 
     const candidateData = await CandidateQueries.getOne(id)
 
     const finalPayload = candidateDataMapper(candidateData)
-    
 
     res.status(200).json(finalPayload)
   } catch (err) {
