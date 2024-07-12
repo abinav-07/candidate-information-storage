@@ -1,3 +1,110 @@
 th.ant-table-cell{
     overflow-wrap: normal !important;
 }
+
+.content-header{
+    background: #fff;
+    align-items: center;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #c7cdd4;
+    margin-bottom:5px;
+}
+
+.candidate-form-layout{
+    background: #fff;
+    border:1px solid #d5d3d3;
+    border-radius:30px;
+    margin:10px;
+    padding: 10px;
+
+    .ant-form{
+        margin:30px;
+        .ant-form-item-explain-error{
+            font-size:18px;
+        }
+        label{
+            font-size:18px;
+        }
+        .ant-form-item{
+            margin-bottom: 0px;
+        } 
+
+        textarea{
+            align-content: center;
+            height:60px;
+        }
+
+        .ant-input {
+            height:60px;
+            width: 90%;
+
+            &:focus,
+            &:hover,
+            &:active {
+              border-color: #d5d6d9;
+              box-shadow: none;
+            }
+
+            &::placeholder {
+                font-size: 18px;
+                color: #949292
+            }
+          }
+        
+        .ant-input-status-error{
+            border-color: none;
+        }
+        .ant-form-item-label{
+            border: 1px solid #b7afaf;
+            background: rgb(243, 243, 243);
+            min-height: 90px;
+            align-content: center;
+            text-align: center;
+            padding: 10px;
+            white-space: normal;
+        }
+
+        .ant-form-item-control{
+            border: 1px solid #b7afaf;
+            min-height: 90px;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .ant-form-item:last-child{
+            .ant-form-item-control {
+                border:none;
+                min-height: 60px;
+                padding: 10px;
+                
+                button{
+                    margin-top: 20px;
+                    height: 50px;
+                    width:180px;
+                    text-align: left;
+                    border-radius:50px;
+                }
+            }
+    
+        }
+        .availability_time{
+            .ant-form-item-control{
+                min-height:auto;
+            }
+            .ant-picker {
+                height: 40px;
+            }
+            .ant-form-item-control-input-content{
+                display: flex;
+                align-items: center;
+            }
+            .availability_start_time  .ant-form-item-control{
+                border:none;
+            }
+        }
+      
+    }
+
+
+}

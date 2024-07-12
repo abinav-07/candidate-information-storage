@@ -83,7 +83,7 @@ const PrivateRoute = (AuthComponent: any) => {
               style={{
                 overflow: "hidden",
                 height: "100vh",
-                position: "relative",
+                position: "sticky",
                 top: 0,
                 left: 0,
               }}
