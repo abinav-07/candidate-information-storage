@@ -18,4 +18,11 @@ router.patch(
   AdminControllers.updateCandidateProfile
 )
 
+router.delete(
+  "/candidate/:id",
+  [checkVerifiedJWTToken, checkAdmin],
+  AdminControllers.deleteCandidateProfile
+)
+
+
 module.exports = router

@@ -5,6 +5,7 @@ import Head from "next/head"
 import { useCallback, useEffect, useState } from "react"
 import { message } from "antd"
 import { Roles } from "@/constants"
+import '../styles/global.css';
 
 const queryClient = new QueryClient({ defaultOptions: {} })
 

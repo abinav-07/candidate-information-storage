@@ -53,7 +53,7 @@ class CandidatesQueries {
   }
 
   // delete candidate using id
-  async deleteUser(id, transaction = null) {
+  async deleteCandidate(id, transaction = null) {
     const query = {
       where: {
         id,

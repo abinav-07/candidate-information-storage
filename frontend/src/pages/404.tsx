@@ -1,6 +1,7 @@
-import PrivateRoute from "@/privateRoute"
+
 import { Result } from "antd"
 import styled from "styled-components"
+import PrivateRoute from "./privateRoute"
 
 const Container = styled.div`
   font-size: 20px;

@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from "react"
 import { Layout, Spin, message } from "antd"
 import styled from "styled-components"
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons"
-import NavBar from "./components/nav"
+import NavBar from "../components/nav"
 import Router from "next/router"
-import { AuthContext } from "./utils"
+import { AuthContext } from "../utils"
 
 const { Content, Sider, Header } = Layout
 

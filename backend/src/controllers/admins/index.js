@@ -89,7 +89,7 @@ const getAllCandidates = async (req, res, next) => {
  *    "message": "Created Successfully.",
  * }
  *
- * @apiError {Object} error Error object if the registration process fails.
+ * @apiError {Object} error Error object if the process fails.
  *
  * @apiErrorExample {json} Error Response:
  * HTTP/1.1 500 Internal Server Error
@@ -134,6 +134,8 @@ const createCandidateProfile = async (req, res, next) => {
       {
         ...data,
         added_by: admin?.id,
+        // Remove deleted at if the same user is added twice and was already deleted previously.
+        deleted_at:null
       },
       t
     )
@@ -192,7 +194,7 @@ const createCandidateProfile = async (req, res, next) => {
  *    "message": "Updated Successfully",
  * }
  *
- * @apiError {Object} error Error object if the registration process fails.
+ * @apiError {Object} error Error object if the process fails.
  *
  * @apiErrorExample {json} Error Response:
  * HTTP/1.1 500 Internal Server Error
@@ -268,8 +270,67 @@ const updateCandidateProfile = async (req, res, next) => {
   }
 }
 
+
+/**
+ * @api {delete} /api/admin/candidate/:id Delete Candidate Profile
+ * @apiName DeleteCandidateProfile
+ * @apiGroup Admin
+ * @apiDescription Common API to delete Candidate's profile
+ *
+ * @apiHeader {String} authorization Admin's unique access-key.
+ *
+ * @apiParam {Number} id Candidate's unique ID.
+ * 
+ * @apiSuccess {String} message Success Message
+ *
+ * @apiSuccessExample {json} Success Response:
+ * HTTP/1.1 200 OK
+ * {
+ *    "message": "Deleted Successfully",
+ * }
+ *
+ * @apiError {Object} error Error object if the process fails.
+ *
+ * @apiErrorExample {json} Error Response:
+ * HTTP/1.1 500 Internal Server Error
+ * {
+ *    "message": error
+ * }
+ */
+const deleteCandidateProfile = async (req, res, next) => {
+  const admin = req.user
+
+  try {
+   
+    const candidateId = req.params?.id
+
+    if (!candidateId) {
+      throw new ValidationException(null, "Candidate Id is required in params.")
+    }
+
+    // Check if the candidate exists
+    const candidateProfile = await CandidateQueries.getOne(candidateId)
+
+    if (!candidateProfile) {
+      throw new ValidationException(null, "Candidate not found.")
+    }
+
+    // Update user profile
+    await CandidateQueries.deleteCandidate(
+      candidateId,
+    )
+
+    res.status(200).json({
+      message: "Deleted Successfully.",
+    })
+  } catch (err) {
+    next(err)
+  }
+}
+
 module.exports = {
   getAllCandidates,
   createCandidateProfile,
   updateCandidateProfile,
+  deleteCandidateProfile
 }
