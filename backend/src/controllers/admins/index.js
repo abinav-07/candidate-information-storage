@@ -135,7 +135,7 @@ const createCandidateProfile = async (req, res, next) => {
         ...data,
         added_by: admin?.id,
         // Remove deleted at if the same user is added twice and was already deleted previously.
-        deleted_at:null
+        deleted_at: null,
       },
       t
     )
@@ -270,7 +270,6 @@ const updateCandidateProfile = async (req, res, next) => {
   }
 }
 
-
 /**
  * @api {delete} /api/admin/candidate/:id Delete Candidate Profile
  * @apiName DeleteCandidateProfile
@@ -280,7 +279,7 @@ const updateCandidateProfile = async (req, res, next) => {
  * @apiHeader {String} authorization Admin's unique access-key.
  *
  * @apiParam {Number} id Candidate's unique ID.
- * 
+ *
  * @apiSuccess {String} message Success Message
  *
  * @apiSuccessExample {json} Success Response:
@@ -301,7 +300,6 @@ const deleteCandidateProfile = async (req, res, next) => {
   const admin = req.user
 
   try {
-   
     const candidateId = req.params?.id
 
     if (!candidateId) {
@@ -316,9 +314,7 @@ const deleteCandidateProfile = async (req, res, next) => {
     }
 
     // Update user profile
-    await CandidateQueries.deleteCandidate(
-      candidateId,
-    )
+    await CandidateQueries.deleteCandidate(candidateId)
 
     res.status(200).json({
       message: "Deleted Successfully.",
@@ -332,5 +328,5 @@ module.exports = {
   getAllCandidates,
   createCandidateProfile,
   updateCandidateProfile,
-  deleteCandidateProfile
+  deleteCandidateProfile,
 }

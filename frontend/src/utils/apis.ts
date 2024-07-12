@@ -23,10 +23,10 @@ API.interceptors.request.use(
 )
 
 API.interceptors.response.use(
-  res => {
+  (res) => {
     return res
   },
-  error => {
+  (error) => {
     if (error.response.status === 401) {
       removeToken("candidate-portal-token")
       Router.push("/login")

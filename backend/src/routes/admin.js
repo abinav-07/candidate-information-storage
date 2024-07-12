@@ -24,5 +24,4 @@ router.delete(
   AdminControllers.deleteCandidateProfile
 )
 
-
 module.exports = router
