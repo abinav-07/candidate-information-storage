@@ -2,6 +2,8 @@
 
 ## INTRODUCTION
 
+The application is built using Next14, express, sequelize ORM, Docker(docker compose), MySQL and node-cache. 
+
 This Readme file will help you in configuring the application.
 
 ## CONFIGURATION
