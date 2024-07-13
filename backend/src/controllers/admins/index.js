@@ -1,5 +1,5 @@
 const Joi = require("joi")
-const { ValidationException } = require("../../exceptions/httpsExceptions")
+const { ValidationException, NotFoundException } = require("../../exceptions/httpsExceptions")
 
 //Queries
 const CandidateQueries = require("../../queries/candidate")
@@ -88,6 +88,10 @@ const getCandidate = async (req, res, next) => {
     }
 
     const candidateData = await CandidateQueries.getOne(id)
+
+    if (!candidateData) {
+      throw new NotFoundException(null, "Candidate not found.")
+    }
 
     const finalPayload = candidateDataMapper(candidateData)
 
@@ -294,7 +298,7 @@ const updateCandidateProfile = async (req, res, next) => {
     const candidateProfile = await CandidateQueries.getOne(candidateId, t)
 
     if (!candidateProfile) {
-      throw new ValidationException(null, "Candidate not found, create new.")
+      throw new NotFoundException(null, "Candidate not found, create new.")
     }
 
     // Update user profile
@@ -347,8 +351,6 @@ const updateCandidateProfile = async (req, res, next) => {
  * }
  */
 const deleteCandidateProfile = async (req, res, next) => {
-  const admin = req.user
-
   try {
     const candidateId = req.params?.id
 

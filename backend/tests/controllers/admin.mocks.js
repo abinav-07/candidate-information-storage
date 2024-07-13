@@ -10,8 +10,8 @@ const mockCandidates = [
     github_url: "https://github.com/abinav-07",
     availability_start_time: "09:00",
     availability_end_time: "17:00",
-    created_at: new Date(),
-    updated_at: new Date(),
+    created_at: expect.any(Date),
+    updated_at: expect.any(Date),
   },
 ]
 
@@ -27,7 +27,7 @@ const mockMappedCandidates = [
     github_url: "https://github.com/abinav-07",
     availability_start_time: "09:00",
     availability_end_time: "17:00",
-    created_at: new Date(),
+    created_at: expect.any(Date),
   },
 ]
 
