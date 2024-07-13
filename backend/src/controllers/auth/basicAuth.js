@@ -68,10 +68,10 @@ const loginUser = async (req, res, next) => {
     const user = await UsersQueries.getUser({ email: data.email })
 
     if (!user || !user?.email) throw new ValidationException(null, "User Not Registered")
-
+  
     if (user && user.password && !bcrypt.compareSync(data.password, user.password))
       throw new ValidationException(null, "Credentials did not match")
-
+ 
     const jwtPayload = userJWTDataMapper(user)
 
     // Auth sign in
@@ -90,10 +90,7 @@ const loginUser = async (req, res, next) => {
 
     // Commit the transaction
     await t.commit()
-
-    // Set HTTP-only cookies for tokens
-    res.cookie("candidate-portal-token", token, cookieConfig[env])
-
+  
     res.status(200).json({
       user: responsePayload,
       token,

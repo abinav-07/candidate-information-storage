@@ -2,7 +2,7 @@
 
 ## INTRODUCTION
 
-The application is built using Next14, express, sequelize ORM, Docker(docker compose), MySQL and node-cache. 
+The application is built using Next14, express, sequelize ORM, Docker(docker compose), MySQL, node-cache and jest. 
 
 This Readme file will help you in configuring the application.
 
@@ -15,6 +15,7 @@ This section covers the process for configuring and installing the application p
 3. In root directory, run `docker compose up --build` to run the application for the first time, after that you can simply use `docker compose up` if no new npm packages are installed, node.js port is taken from env, takes some time to build :). `Make sure you have space left in your device for the application to install`
 4. You can now access the server in 5000 port for nodejs and 5001 for admin database.
 5. You can now access the app in this URL `http://localhost:3000`
+6. To run tests, run `npm i` in root folder and then run `npm run test`.
 
 ## Assumptions
 - Availability Start time and end time can have any order i.e start_time > end_time or end_time > start_time.

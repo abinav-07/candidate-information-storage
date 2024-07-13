@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './.env' });
 jest.mock("./backend/src/models", () => {
   return {
     sequelize: {
