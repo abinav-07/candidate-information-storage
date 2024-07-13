@@ -16,6 +16,14 @@ This section covers the process for configuring and installing the application p
 4. You can now access the server in 5000 port for nodejs and 5001 for admin database.
 5. You can now access the app in this URL `http://localhost:3000`
 
+## Assumptions
+- Availability Start time and end time can have any order i.e start_time > end_time or end_time > start_time.
+- Creating candidate profiles with same email will override previous data.
+
+## Future Changes
+- Paginations in List Page.
+- Display confirmation message on Create candidate page for overriding previously created candidate with same email.
+- Redis for caching because of its scalability and data persistance.
 
 ## For API Documentation
 
