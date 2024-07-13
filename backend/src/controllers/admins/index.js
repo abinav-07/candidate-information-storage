@@ -8,7 +8,6 @@ const { candidateDataMapper } = require("../../helpers/mappers/candidateMapper")
 const { REGEX } = require("../../enums")
 const { setCachedData } = require("../../services/cache")
 
-
 /**
  * @api {get} /api/admin/candidate Get all Candidates
  * @apiName GetCandidates
@@ -45,9 +44,9 @@ const getAllCandidates = async (req, res, next) => {
     const finalPayload = allCandidates?.map((candidateProfile) =>
       candidateDataMapper(candidateProfile)
     )
-    
+
     // Setting cache
-    setCachedData(req.path, finalPayload);
+    setCachedData(req.path, finalPayload)
 
     res.status(200).json(finalPayload)
   } catch (err) {
@@ -93,8 +92,8 @@ const getCandidate = async (req, res, next) => {
 
     const finalPayload = candidateDataMapper(candidateData)
 
-        // Setting cache
-        setCachedData(req.path, finalPayload);
+    // Setting cache
+    setCachedData(req.path, finalPayload)
 
     res.status(200).json(finalPayload)
   } catch (err) {
