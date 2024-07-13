@@ -81,7 +81,6 @@ const getAllCandidates = async (req, res, next) => {
  * }
  */
 const getCandidate = async (req, res, next) => {
-  const admin = req.user
   try {
     const { id } = req.params
     if (!id) {
