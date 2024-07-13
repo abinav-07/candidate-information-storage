@@ -1,5 +1,7 @@
 # READ ME
 
+## TIME SPENT: 18-20 hrs
+
 ## INTRODUCTION
 
 The application is built using Next14, express, sequelize ORM, Docker(docker compose), MySQL, node-cache and jest. 
