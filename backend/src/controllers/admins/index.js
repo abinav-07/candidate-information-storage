@@ -6,6 +6,8 @@ const CandidateQueries = require("../../queries/candidate")
 const { sequelize } = require("../../models")
 const { candidateDataMapper } = require("../../helpers/mappers/candidateMapper")
 const { REGEX } = require("../../enums")
+const { setCachedData } = require("../../services/cache")
+
 
 /**
  * @api {get} /api/admin/candidate Get all Candidates
@@ -43,6 +45,9 @@ const getAllCandidates = async (req, res, next) => {
     const finalPayload = allCandidates?.map((candidateProfile) =>
       candidateDataMapper(candidateProfile)
     )
+    
+    // Setting cache
+    setCachedData(req.path, finalPayload);
 
     res.status(200).json(finalPayload)
   } catch (err) {
@@ -87,6 +92,9 @@ const getCandidate = async (req, res, next) => {
     const candidateData = await CandidateQueries.getOne(id)
 
     const finalPayload = candidateDataMapper(candidateData)
+
+        // Setting cache
+        setCachedData(req.path, finalPayload);
 
     res.status(200).json(finalPayload)
   } catch (err) {

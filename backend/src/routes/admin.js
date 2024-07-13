@@ -4,10 +4,11 @@ const router = express.Router()
 //Controllers
 const AdminControllers = require("../controllers/admins")
 const { checkVerifiedJWTToken, checkAdmin } = require("../middlewares/checkJWT")
+const { checkCache } = require("../middlewares/checkCache")
 
 // Authentication routes
-router.get("/candidate", [checkVerifiedJWTToken, checkAdmin], AdminControllers.getAllCandidates)
-router.get("/candidate/:id", [checkVerifiedJWTToken, checkAdmin], AdminControllers.getCandidate)
+router.get("/candidate", [checkVerifiedJWTToken, checkAdmin,checkCache], AdminControllers.getAllCandidates)
+router.get("/candidate/:id", [checkVerifiedJWTToken, checkAdmin,checkCache], AdminControllers.getCandidate)
 
 router.post(
   "/candidate",
