@@ -17,8 +17,8 @@ jest.mock("../../src/queries/candidate", () => ({
   getAll: jest.fn(),
   getOne: jest.fn(),
   upsertCandidate: jest.fn(),
-  updateCandidate:jest.fn(),
-  deleteCandidate:jest.fn()
+  updateCandidate: jest.fn(),
+  deleteCandidate: jest.fn(),
 }))
 jest.mock("../../src/helpers/mappers/candidateMapper", () => ({
   candidateDataMapper: jest.fn(),
@@ -50,10 +50,8 @@ beforeEach(() => {
   }))
   setCachedData.mockImplementation()
 
-  
-    // Clear all instances and calls to all mocks
-    jest.clearAllMocks();
-  
+  // Clear all instances and calls to all mocks
+  jest.clearAllMocks()
 })
 
 describe("Admin", () => {
@@ -145,7 +143,7 @@ describe("Admin", () => {
 
       // Check that validation error was passed to next()
       expect(mockNext).toHaveBeenCalledWith(expect.any(ValidationException))
-})
+    })
 
     it("should create a candidate profile successfully", async () => {
       const oneCandidate = mockCandidates[0]
@@ -195,7 +193,6 @@ describe("Admin", () => {
   })
 
   describe("updateCandidateProfile", () => {
-   
     it("should return 422 if id not found in params", async () => {
       const mockReq = {
         params: {},
@@ -220,10 +217,9 @@ describe("Admin", () => {
 
       // Check that validation error was passed to next()
       expect(mockNext).toHaveBeenCalledWith(expect.any(ValidationException))
-})
+    })
 
     it("should update a candidate profile successfully", async () => {
-     
       const oneCandidate = mockCandidates[0]
       delete oneCandidate.id
       delete oneCandidate.created_at
@@ -232,8 +228,8 @@ describe("Admin", () => {
         body: {
           ...oneCandidate,
         },
-        params:{
-          id:1
+        params: {
+          id: 1,
         },
         user: { id: 1 },
       }
@@ -272,35 +268,30 @@ describe("Admin", () => {
     })
 
     describe("deleteCandidateProfile", () => {
-   
       it("should return 422 if id not found in params", async () => {
         const mockReq = {
           params: {},
         }
         await deleteCandidateProfile(mockReq, mockRes, mockNext)
-  
+
         expect(mockNext).toHaveBeenCalledWith(
           new ValidationException(null, "Candidate Id is required in params.")
         )
       })
-  
+
       it("should delete a candidate profile successfully", async () => {
         const mockReq = {
-          params:{
-            id:1
+          params: {
+            id: 1,
           },
         }
 
-  
         CandidateQueries.deleteCandidate.mockResolvedValue([1])
-  
+
         await deleteCandidateProfile(mockReq, mockRes, mockNext)
-  
-        expect(CandidateQueries.deleteCandidate).toHaveBeenCalledWith(
-          mockReq.params.id,
-        )
-  
-     
+
+        expect(CandidateQueries.deleteCandidate).toHaveBeenCalledWith(mockReq.params.id)
+
         expect(mockRes.status).toHaveBeenCalledWith(200)
         expect(mockRes.json).toHaveBeenCalledWith({
           message: "Deleted Successfully.",
