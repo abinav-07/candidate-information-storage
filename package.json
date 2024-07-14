@@ -8,14 +8,28 @@
   ],
   "scripts": {
     "format:fix": "prettier --write './**/*.{js,ts}{x,}'",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npx husky install"
   },
-  "keywords": [],
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo Husky test"
+    }
+  },
+  "keywords": [
+    "express.js",
+    "Next.js",
+    "node-cache",
+    "sequelize",
+    "docker",
+    "jest"
+  ],
   "author": "Abinav Ghimire",
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^16.4.5",
     "jest": "^29.7.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "husky": "^8.0.0"
   }
 }
