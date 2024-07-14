@@ -11,11 +11,6 @@
     "test": "jest",
     "prepare": "npx husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "echo Husky test"
-    }
-  },
   "keywords": [
     "express.js",
     "Next.js",
