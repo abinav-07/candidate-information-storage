@@ -6,7 +6,7 @@ import {
 import { ICreateCandidate } from "@/types/candidates"
 import { Button, Form, Input, TimePicker, message } from "antd"
 import TextArea from "antd/es/input/TextArea"
-import moment from "moment"
+import dayjs from 'dayjs';
 import Router from "next/router"
 import React, { useEffect } from "react"
 import { useMutation, useQuery } from "react-query"
@@ -71,20 +71,20 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
         candidate_id: Number(id),
         ...values,
         availability_start_time: values.availability_start_time
-          ? moment(new Date(values.availability_start_time)).format("HH:mm")
+          ? dayjs(new Date(values.availability_start_time)).format("HH:mm")
           : "",
         availability_end_time: values.availability_end_time
-          ? moment(new Date(values.availability_end_time)).format("HH:mm")
+          ? dayjs(new Date(values.availability_end_time)).format("HH:mm")
           : "",
       })
     } else {
       create({
         ...values,
         availability_start_time: values.availability_start_time
-          ? moment(new Date(values.availability_start_time)).format("HH:mm")
+          ? dayjs(new Date(values.availability_start_time)).format("HH:mm")
           : "",
         availability_end_time: values.availability_end_time
-          ? moment(new Date(values.availability_end_time)).format("HH:mm")
+          ? dayjs(new Date(values.availability_end_time)).format("HH:mm")
           : "",
       })
     }
@@ -107,14 +107,14 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
       form.setFieldsValue({
         ...initialData,
         availability_start_time: initialData.availability_start_time
-          ? moment(initialData.availability_start_time, "HH:mm")
+          ? dayjs(initialData.availability_start_time, "HH:mm:ss")
           : null,
         availability_end_time: initialData.availability_end_time
-          ? moment(initialData.availability_end_time, "HH:mm")
+          ? dayjs(initialData.availability_end_time, "HH:mm:ss")
           : null,
       })
     }
-  }, [initialData])
+  }, [candidateData])
 
   return (
     <>
@@ -134,7 +134,7 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
           name="first_name"
           rules={[{ required: true, message: "Please enter first name!" }]}
         >
-          <Input placeholder="Enter first name" />
+          <Input placeholder="Enter first name" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
 
         <Form.Item
@@ -142,7 +142,7 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
           name="last_name"
           rules={[{ required: true, message: "Please enter last name!" }]}
         >
-          <Input placeholder="Enter last name" />
+          <Input placeholder="Enter last name" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
 
         <Form.Item
@@ -150,7 +150,7 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
           name="email"
           rules={[{ required: true, message: "Please enter valid email!" }]}
         >
-          <Input placeholder="Enter email" />
+          <Input placeholder="Enter email" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
         <Form.Item
           label="Free text"
@@ -160,21 +160,24 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
           <TextArea placeholder="Enter free text" />
         </Form.Item>
         <Form.Item label="Phone number" name="phone_number">
-          <Input placeholder="Enter phone number" />
+          <Input placeholder="Enter phone number" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
         <Form.Item label="LinkedIn URL" name="linkedin_url">
-          <Input placeholder="Enter LinkedIn URL" />
+          <Input placeholder="Enter LinkedIn URL" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
         <Form.Item label="Github URL" name="github_url">
-          <Input placeholder="Enter Github URL" />
+          <Input placeholder="Enter Github URL" onPressEnter={(e) => e.preventDefault()} />
         </Form.Item>
         <Form.Item label="Availability Time" className="availability_time">
           <Form.Item
             name="availability_start_time"
             className="availability_start_time"
             rules={[{ required: !!availabilityEndWatch, message: "Please enter start time!" }]}
+
           >
-            <TimePicker showSecond={false} />
+            <TimePicker
+              format={"HH:mm"}
+              showSecond={false} />
           </Form.Item>
           ~
           <Form.Item
@@ -182,7 +185,10 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
             className="availability_end_time"
             rules={[{ required: !!availabilityStartWatch, message: "Please enter end time!" }]}
           >
-            <TimePicker disabled={!availabilityStartWatch} showSecond={false} />
+            <TimePicker
+              format={"HH:mm"}
+              disabled={!availabilityStartWatch}
+              showSecond={false} />
           </Form.Item>
         </Form.Item>
         <Form.Item

@@ -22,10 +22,6 @@ jest.mock("../../src/helpers/mappers/userMapper", () => ({
   userDataMapper: jest.fn(),
   userJWTDataMapper: jest.fn(),
 }))
-jest.mock("../../src/config/cookieConfig", () => ({
-  cookieConfig: "test",
-  env: "development",
-}))
 
 beforeEach(() => {
   userDataMapper.mockImplementation((userData) => ({
@@ -60,7 +56,6 @@ describe("Auth", () => {
 
       let newMockRes = {
         ...mockRes,
-        cookie: jest.fn(),
       }
 
       // Create mocks for commit and rollback functions
