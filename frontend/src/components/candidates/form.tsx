@@ -6,7 +6,7 @@ import {
 import { ICreateCandidate } from "@/types/candidates"
 import { Button, Form, Input, TimePicker, message } from "antd"
 import TextArea from "antd/es/input/TextArea"
-import dayjs from 'dayjs';
+import dayjs from "dayjs"
 import Router from "next/router"
 import React, { useEffect } from "react"
 import { useMutation, useQuery } from "react-query"
@@ -173,11 +173,8 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
             name="availability_start_time"
             className="availability_start_time"
             rules={[{ required: !!availabilityEndWatch, message: "Please enter start time!" }]}
-
           >
-            <TimePicker
-              format={"HH:mm"}
-              showSecond={false} />
+            <TimePicker format={"HH:mm"} showSecond={false} />
           </Form.Item>
           ~
           <Form.Item
@@ -185,10 +182,7 @@ const CandidateProfileForm: React.FC<IProps> = ({ id }) => {
             className="availability_end_time"
             rules={[{ required: !!availabilityStartWatch, message: "Please enter end time!" }]}
           >
-            <TimePicker
-              format={"HH:mm"}
-              disabled={!availabilityStartWatch}
-              showSecond={false} />
+            <TimePicker format={"HH:mm"} disabled={!availabilityStartWatch} showSecond={false} />
           </Form.Item>
         </Form.Item>
         <Form.Item
