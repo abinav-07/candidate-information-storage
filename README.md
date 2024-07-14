@@ -24,8 +24,10 @@ This section covers the process for configuring and installing the application p
 - Creating candidate profiles with same email will override previous data.
 
 ## Future Changes
+- More responsive designs.
 - Paginations in List Page.
 - Display confirmation message on Create candidate page for overriding previously created candidate with same email.
+- More unit tests.
 - Redis for caching because of its scalability and data persistance.
 
 ## For API Documentation
